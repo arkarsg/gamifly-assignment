@@ -1,9 +1,12 @@
-import "dotenv/config";
 import http from "http";
 import app from "~/app";
+import config from "~/config/config";
+import { checkDb } from "~/db";
 
-const port = process.env.GAMIFLY_SERVER_PORT || 3001;
+const port = config().GAMIFLY_SERVER_PORT;
 const server = http.createServer(app);
 
-server.listen(port);
+server.listen(port, () => {
+  void checkDb();
+});
 console.log("Payment service listening on http://localhost:" + port);

@@ -2,7 +2,6 @@ import cors from "cors";
 import express, { NextFunction, Request, Response } from 'express';
 
 const app = express();
-
 app.use(cors()); // config cors so that front-end can use
 app.options("*", cors());
 
@@ -11,8 +10,8 @@ app.get("/", (req: Request, res: Response) => {
     res.json({
       message: "Hello World from user-service",
     });
-  });
-  
+});
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error: Error & { status?: number} = new Error("Route Not Found");
   error.status = 404;
