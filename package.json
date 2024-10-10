@@ -8,7 +8,9 @@
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint",
-    "lint:fix": "npm run lint --fix"
+    "lint:fix": "npm run lint --fix",
+    "db:check": "npx drizzle-kit check",
+    "db:migrate": "npx drizzle-kit migrate"
   },
   "author": "",
   "license": "ISC",
