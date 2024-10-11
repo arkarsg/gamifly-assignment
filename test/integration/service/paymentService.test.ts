@@ -1,7 +1,7 @@
 // orderService.test.ts
 import { createOrder } from "../../../src/service/order/orderService";
 import { ICreateOrder } from "../../../src/service/order/types";
-import { createPayment } from "../../../src/service/payment/paymentService";
+import { createPayment, updatePaymentStatusByOrderId } from "../../../src/service/payment/paymentService";
 import { ICreatePayment } from "../../../src/service/payment/types";
 import { CurrencyType, GatewayType, StatusType, type Order } from "../../../src/utils/types";
 
@@ -41,5 +41,14 @@ describe("Order Service", () => {
     })
 
     expect(res).toBeNull();
+  })
+
+  test("updatePaymentStatus updates payment", async () => {
+    const newStatus = StatusType.COMPLETED;
+    const updatedPayment = await updatePaymentStatusByOrderId(testOrder.id, newStatus);
+    expect(updatedPayment).toBeDefined();
+    if (updatedPayment) {
+      expect(updatedPayment.status).toBe(newStatus);
+    }
   })
 });
