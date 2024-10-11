@@ -9,3 +9,15 @@
 ```
 make db
 ```
+
+2. Install dependencies
+
+```
+npm i
+```
+
+3. Start the server (development mode)
+
+```
+npm run dev
+```
