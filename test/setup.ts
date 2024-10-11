@@ -6,7 +6,7 @@ import postgres from 'postgres';
 export default async function (){
   try {
     const container = await new PostgreSqlContainer('postgres:17-alpine').start();
-
+    console.log("started container")
     process.env.DATABASE_URL = container.getConnectionUri()
     const client = postgres({
         host: container.getHost(),
@@ -14,7 +14,6 @@ export default async function (){
         database: container.getDatabase(),
         user: container.getUsername(),
         password: container.getPassword(),
-        max: 1,
       })
     
     const drizzleClient = drizzle(client)
@@ -25,8 +24,7 @@ export default async function (){
     
     
     global.pgContainer = container;
-    
-    await client.end()
+    global.pgClient = client;
   } catch (error) {
     console.error(
       'Error creating testcontainer: ',

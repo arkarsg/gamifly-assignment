@@ -1,3 +1,6 @@
 export default async function () {
-    await global.pgContainer.stop()
+	if (global.pgContainer && global.pgClient) {
+		await global.pgContainer.stop()
+		await global.pgClient.end()
+	}
 }

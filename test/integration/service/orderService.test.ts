@@ -1,7 +1,7 @@
 // orderService.test.ts
-import { createOrder, getAllOrders } from "../../src/service/order/orderService";
-import { ICreateOrder } from "../../src/service/order/types";
-import { CurrencyType } from "../../src/utils/types";
+import { createOrder, getAllOrders } from "../../../src/service/order/orderService";
+import { ICreateOrder } from "../../../src/service/order/types";
+import { CurrencyType } from "../../../src/utils/types";
 
 describe("Order Service", () => {
   let testOrder: ICreateOrder;
@@ -37,7 +37,7 @@ describe("Order Service", () => {
 
   test("getAllOrders should return all orders", async () => {
     const orders = await getAllOrders();
-
+    console.log(orders.length)
     expect(orders.length).toBeGreaterThan(0);
     const lastOrder = orders[orders.length - 1];
 
