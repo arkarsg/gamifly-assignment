@@ -1,4 +1,3 @@
-// orderService.test.ts
 import { createOrder } from "../../../src/service/order/orderService";
 import { ICreateOrder } from "../../../src/service/order/types";
 import { createPayment, updatePaymentStatusByOrderId } from "../../../src/service/payment/paymentService";
@@ -49,6 +48,7 @@ describe("Order Service", () => {
     expect(updatedPayment).toBeDefined();
     if (updatedPayment) {
       expect(updatedPayment.status).toBe(newStatus);
+      expect(updatedPayment.updatedAt?.getMilliseconds()).toBeGreaterThan(updatedPayment.createdAt!.getMilliseconds());
     }
   })
 });

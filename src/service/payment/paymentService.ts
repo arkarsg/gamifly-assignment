@@ -25,7 +25,7 @@ export const updatePaymentStatusByOrderId = async (orderId: number, newStatus: S
   try {
     const [updatedPayment] = await db
       .update(payments)
-      .set({ status: newStatus})
+      .set({ status: newStatus, updatedAt: new Date()})
       .where(eq(payments.orderId, orderId))
       .returning();
     return updatedPayment;
